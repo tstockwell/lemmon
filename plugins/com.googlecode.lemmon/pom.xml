@@ -1,0 +1,145 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.googlecode.lemmon</groupId>
+  <artifactId>com.googlecode.lemmon.lemmon-core</artifactId>
+  <name>Lemmon OSGi kernel</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+  
+  <properties>
+    <dollar>$</dollar>
+  </properties>
+  
+   <repositories>        
+   	<repository>            
+   		<id>jetlang.googlecode.com</id>            
+   		<name>Jetlang Repository for Maven</name>            
+   		<url>http://jetlang.googlecode.com/svn/repo/</url>        
+   	</repository>    
+   </repositories>
+   
+     
+  <dependencies>
+  <!-- 
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.framework</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+   -->
+
+    <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-servlet_2.5_spec</artifactId>
+      <version>1.2</version>
+      <scope>provided</scope>
+    </dependency>
+
+<!-- 
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+ -->    
+    
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
+      <version>1.2.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>javax.servlet</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+    <!-- Google App Engine API 
+    <dependency>
+      <groupId>com.google</groupId>
+      <artifactId>appengine-api</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+    -->
+
+	<dependency>
+	  <groupId>org.apache.commons</groupId>
+	  <artifactId>commons-vfs</artifactId>
+	  <version>2.0-SNAPSHOT</version>
+	</dependency>
+	
+   <!-- 
+	<dependency>            
+		<groupId>org.jetlang</groupId>            
+		<artifactId>jetlang</artifactId>            
+		<version>0.1.7</version>        
+	</dependency>
+	-->
+
+  </dependencies>
+  
+  
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/felix/java</source>
+                <source>src/felix/resources</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>1.4.3</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>com.googlecode.lemmon.framework</Bundle-SymbolicName>
+            <Bundle-Name>Lemmon Framework</Bundle-Name>
+            <Bundle-Description>OSGi R4 framework implementation for Google App Engine.</Bundle-Description>
+            <Bundle-Vendor>Ted Stockwell</Bundle-Vendor>
+            <Export-Package>org.osgi.framework;-split-package:=merge-first,org.osgi.framework.launch,org.osgi.framework.hooks.service,org.osgi.service.packageadmin,org.osgi.service.url,org.osgi.service.startlevel,org.osgi.util.tracker</Export-Package>
+            <Private-Package>org.apache.felix.moduleloader.*,org.apache.felix.framework.*,com.googlecode.lemmon.*</Private-Package>
+            <Import-Package>!*</Import-Package>
+            <Include-Resource>META-INF/LICENSE=LICENSE,META-INF/NOTICE=NOTICE,{src/felix/resources/},org/osgi/framework/=target/classes/org/osgi/framework/</Include-Resource> 
+          </instructions>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>rat-maven-plugin</artifactId>
+        <configuration>
+          <excludeSubProjects>false</excludeSubProjects>
+          <useEclipseDefaultExcludes>true</useEclipseDefaultExcludes>
+          <useMavenDefaultExcludes>true</useMavenDefaultExcludes>
+          <excludes>
+            <param>doc/*</param>
+            <param>maven-eclipse.xml</param>
+            <param>.checkstyle</param>
+            <param>.externalToolBuilders/*</param>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

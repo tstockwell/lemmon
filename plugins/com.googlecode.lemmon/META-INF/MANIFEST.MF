@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Lemmon Plug-in
+Bundle-SymbolicName: com.googlecode.lemmon
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: ./
+Export-Package: com.googlecode.lemmon,
+ com.googlecode.lemmon.service.http.system
+Import-Package: javax.servlet;version="2.5.0",
+ javax.servlet.http;version="2.5.0",
+ org.apache.felix.framework,
+ org.apache.felix.framework.util,
+ org.osgi.framework,
+ org.osgi.service.http;version="1.2.0"
