@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Export-Package: com.googlecode.lemmon.service.http;uses:="javax.servle
+ t,com.googlecode.lemmon.service.http.system,org.osgi.framework,org.os
+ gi.service.http,javax.servlet.http"
+Built-By: Ted Stockwell
+Tool: Bnd-0.0.255
+Bundle-Name: http-service
+Created-By: Apache Maven Bundle Plugin
+Bundle-Version: 0.0.1.SNAPSHOT
+Build-Jdk: 1.6.0_10
+Bnd-LastModified: 1244660870848
+Bundle-ManifestVersion: 2
+Bundle-Activator: com.googlecode.lemmon.service.http.HttpServiceActiva
+ tor
+Import-Package: com.googlecode.lemmon.service.http,com.googlecode.lemm
+ on.service.http.system,javax.servlet,javax.servlet.http,org.osgi.fram
+ ework;version="1.4",org.osgi.service.http;version="1.2"
+Bundle-SymbolicName: com.googlecode.lemmon.http-service
+
