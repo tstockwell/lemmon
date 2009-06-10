@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.googlecode.lemmon</groupId>
+  <artifactId>example-webapp</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+  	<bundleDirectory>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/deploy</bundleDirectory>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>com.googlecode.lemmon</groupId>
+      <artifactId>com.googlecode.lemmon.lemmon-core</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.foundation</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-bundles</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.googlecode.lemmon</groupId>
+                  <artifactId>com.googlecode.lemmon.example-bundle</artifactId>
+                  <version>0.0.1-SNAPSHOT</version>
+                </artifactItem>
+                <artifactItem>
+					<groupId>org.apache.felix</groupId>
+  					<artifactId>org.apache.felix.shell</artifactId>
+  					<version>1.2.0</version>
+                  </artifactItem>
+                <artifactItem>
+				  <groupId>org.apache.felix</groupId>
+				  <artifactId>org.apache.felix.bundlerepository</artifactId>
+				  <version>1.4.0</version>              
+                  </artifactItem>
+                <artifactItem>
+				  <groupId>com.googlecode.lemmon</groupId>
+				  <artifactId>com.googlecode.lemmon.http-service</artifactId>
+				  <version>0.0.1-SNAPSHOT</version>
+                </artifactItem>
+              </artifactItems>
+              
+              <outputDirectory>${bundleDirectory}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>7.0.0.1beta0</version>                
+      </plugin>
+      
+<!-- 
+<plugin>
+ <artifactId>maven-assembly-plugin</artifactId>
+ <configuration>
+  <descriptors>
+   <descriptor>assemble.xml</descriptor>
+  </descriptors>
+ </configuration>
+ <executions>
+  <execution>
+   <id>make-assembly</id>   
+   <phase>package</phase>
+   <goals>
+    <goal>single</goal>
+   </goals>
+  </execution>
+ </executions>
+</plugin>
+ -->    
+      
+    </plugins>
+   
+  </build>
+
+  
+</project>

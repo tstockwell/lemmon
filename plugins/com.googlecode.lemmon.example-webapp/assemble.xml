@@ -1,0 +1,15 @@
+<assembly>
+
+	<id>qwerty</id>
+	<formats>
+		<format>war</format>
+	</formats>
+
+  <dependencySets>
+  
+    <dependencySet>
+    </dependencySet>
+    
+  </dependencySets>
+  
+</assembly>
