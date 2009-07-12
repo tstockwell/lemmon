@@ -2,6 +2,9 @@
 <project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="com.googlecode.lemmon.example-webapp">
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/com.googlecode.lemmon/com.googlecode.lemmon">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="lemmon-example-webapp"/>
         <property name="java-output-path"/>
     </wb-module>
